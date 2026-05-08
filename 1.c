@@ -84,7 +84,7 @@ void writeInFile(const char *fileName, int x) {
 
 int main (void)
 {
-    sigset(SIGUSR1, sigusr1Handler);
+    signal(SIGUSR1, sigusr1Handler);
     signal(SIGTERM, sigtermHandler);
     signal(SIGINT, sigintHandler);
 
