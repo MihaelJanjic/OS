@@ -6,26 +6,6 @@
 
 int num = 1;
 
-void sigusr1Handler(int sig)
-{ 
-    printf("\n[SIGUSR1] Current number: %d\n", num);
-    fflush(stdout);
-}
-
-void sigtermHandler(int sig)
-{ 
-    int last = readLastItemInFile("obrada.txt");
-    overwriteFile("status.txt", (int)sqrt(last));
-    printf("\n[SIGTERM] Save and quit.\n");
-    exit(0);
-}
-
-void sigintHandler(int sig)
-{ 
-    printf("[SIGINT] Interrupt");
-    exit(0);
-}
-
 int readLastItemInFile(const char *fileName)
 {
     FILE *file = fopen(fileName, "r");
@@ -80,6 +60,26 @@ void writeInFile(const char *fileName, int x) {
     fprintf(file, "%d\n", x);
     
     fclose(file);
+}
+
+void sigusr1Handler(int sig)
+{ 
+    printf("\n[SIGUSR1] Current number: %d\n", num);
+    fflush(stdout);
+}
+
+void sigtermHandler(int sig)
+{ 
+    int last = readLastItemInFile("obrada.txt");
+    overwriteFile("status.txt", (int)sqrt(last));
+    printf("\n[SIGTERM] Save and quit.\n");
+    exit(0);
+}
+
+void sigintHandler(int sig)
+{ 
+    printf("[SIGINT] Interrupt");
+    exit(0);
 }
 
 int main (void)
